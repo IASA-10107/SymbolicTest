@@ -98,8 +98,7 @@ class Symbol(Term):
         return str(self)
     
     def diff(self, base):
-        # TODO: multi-variable diff implementation
-        return ConstantNumber(1.) if self == base else PseudoSymbol(f"d{str(self)}/d{str(base)}")
+        return ConstantNumber(1.) if self == base else PseudoSymbol(f"d{self}/d{base}")
 
 class PseudoSymbol(Term):
 
@@ -120,8 +119,7 @@ class PseudoSymbol(Term):
         return str(self)
     
     def diff(self, base):
-        # TODO: multi-variable diff implementation
-        return PseudoSymbol(f"d{str(self)}/d{str(base)}")
+        return PseudoSymbol(f"d{self}/d{base}")
 
 class TermFunction(Term):
     def __init__(self, funcbase: TermFunctionBase, *args: Term):
@@ -132,7 +130,8 @@ class TermFunction(Term):
         return self.funcbase.func(*self.args)
     
     def __str__(self):
-        return f"{self.funcbase.name}({",".join(map(str, self.args))})"
+        __content = ",".join(map(str, self.args))
+        return f"{self.funcbase.name}({__content})"
     
     def tree(self):
         return {str(self.funcbase) : [arg.tree() for arg in self.args]}

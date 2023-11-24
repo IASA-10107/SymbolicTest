@@ -29,7 +29,9 @@ with chat:
                 raise NameError("Invaid name for Symbol (Try name able to be used in identifier)")
             else:
                 Symbol(symbol_input)
-        st.write(f"**Current Symbols: [{", ".join(Symbol.symbols)}]**")
+        
+        __symbol_content = ", ".join(Symbol.symbols)
+        st.write(f"**Current Symbols: [{__symbol_content}]**")
 
     term_input = st.text_input("Term to Differentiate")
     term_base = st.selectbox("Differential Base", Symbol.symbols.keys())
