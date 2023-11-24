@@ -4,7 +4,7 @@ import streamlit as st
 
 st.title("미분기? v0.1.0")
 
-project_path = "\\"
+project_path = ""
 
 doc = st.sidebar
 chat, code, changelog = st.tabs(["미분기", "CODE", "CHANGELOG"])
